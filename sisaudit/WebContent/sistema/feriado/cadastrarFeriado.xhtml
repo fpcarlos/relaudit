@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/template/template.xhtml">
+	<br />
+	<br />
+	<br />
+	<ui:define name="content">
+		<t:saveState value="#{feriadoBean.feriado}" />
+		<t:saveState value="#{feriadoBean.listaTipoFeriados}" />
+		<script type="text/javascript">
+				$(document).ready(
+			        function() {
+			            PrimeFaces.locales['pt_BR'] = {
+			                prevText : 'Anterior', nextText : 'Próximo', currentText : 'Data Atual',
+			                monthNamesShort : [ 'Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez' ],
+			                dayNamesShort : [ 'Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb' ],
+			                firstDay : 1, isRTL : false, showMonthAfterYear : false, yearSuffix : '',
+			                month : 'Mês', week : 'Semana', day : 'Dia'
+		            	};
+		        	});
+			</script>
+		<br />
+		<br />
+		<h:form id="form">
+			<p:messages />
+			<h:panelGrid columns="6" cellpadding="5">
+
+				<p:outputLabel for="descricao" value="Descrição" />
+				<p:inputText id="descricao" value="#{feriadoBean.feriado.descricao}"
+					required="true" />
+				<p:message for="descricao" />
+
+				<p:outputLabel for="dataFeriado" value="Data Feriado" />
+				<p:calendar id="dataFeriado" value="#{feriadoBean.feriado.data}"
+					navigator="true" pattern="dd/MM/yyyy" locale="pt_BR"
+					yearRange="c-100:c+1" mask="true" required="true" />
+				<p:message for="dataFeriado" />
+				<p:outputLabel for="tipoFeriado" value="Tipo Feriado" />
+				<p:selectOneMenu id="tipoFeriado"
+					value="#{feriadoBean.feriado.tipoFeriado}"
+					converter="tipoFeriadoConverter" required="true"
+					requiredMessage="Campo Tipo Feriado é obrigatório">
+					<f:selectItems value="#{feriadoBean.listaTipoFeriados}" var="tf"
+						itemLabel="#{tf.descricao}" itemValue="#{tf}" />
+				</p:selectOneMenu>
+				<p:message for="tipoFeriado" />
+
+
+			</h:panelGrid>
+
+			<p:commandButton value="Cadastrar" validateClient="true"
+				action="#{feriadoBean.cadastraFeriado}" ajax="false" />
+			<p:commandButton value="Alterar" validateClient="true"
+				action="#{feriadoBean.editaFeriado}" ajax="false" />
+			<p:commandButton value="Excluir" validateClient="true"
+				action="#{feriadoBean.excluiFeriado}" ajax="false" />
+			<p:commandButton value="Buscar"
+				action="#{feriadoBean.listagemFeriados}" immediate="true" ajax="false" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

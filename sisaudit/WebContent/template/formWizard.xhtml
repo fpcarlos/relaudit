@@ -1,0 +1,30 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:tce="http://www.tce.rr.gov.br/facelets">
+	
+	<style>
+		  .ui-wizard-step-title{
+		  	float: left;
+		  	font-size: 18px;
+		  	border-radius: 0 15px 15px 0 !important; 
+ 			border-right:6px #0081c2 solid !important;
+/* 		  	border-left-color: rgb(0, 204, 153) !important; */
+/* 		  	border-top: 15px solid transparent !important; */
+/* 		  	border-bottom: 15px solid transparent !important; */
+/* 		  	border-left: 15px solid #0081c2 !important; */
+		}
+		
+	</style>
+
+<h:body>
+	  <p:panel id="panel" header="#{pnlhead}" style="text-align: center">
+		<p:messages autoUpdate="true"/>
+	     	<p:wizard nextLabel="Continuar" backLabel="Voltar">
+		   		<ui:insert name="formWizardBasico" />
+		 	</p:wizard> 
+	  </p:panel>
+</h:body>
+</html>

@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet name="css/jsfcrud.css" />
+</h:head>
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="content">
+		<h:form id="PortariaCreateForm">
+			<p:messages id="msgid"></p:messages>
+			<h:panelGroup id="display" layout="block" style="overflow-y:scroll">
+				<fieldset>
+					<legend>Auditoria</legend>
+					<table width="50%" cellpadding="0" cellspacing="10" border="0">
+						<tr>
+							<td><p:outputLabel value="Código:" /></td>
+							<td><h:outputText
+									value="#{cadasroPortariaBean.auditoria.idauditoria}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Título: " /></td>
+							<td><h:outputText id="titulo"
+									value="#{cadasroPortariaBean.auditoria.titulo}" /></td>
+						</tr>
+						<tr>
+							<td><p:outputLabel value="Objetivo: " /></td>
+							<td><h:outputText id="objetivoaudi"
+									value="#{cadasroPortariaBean.auditoria.objetivo}" /></td>
+						</tr>
+					</table>
+					<fieldset>
+					<legend>Etapa: Planejamento</legend>
+					<table width="50%" cellpadding="0" cellspacing="0" border="0" >
+						<tr>
+							<td><p:outputLabel value="Iníco (Previsto)" /></td>
+							<td><p:outputLabel value="Fim (Previsto)" /></td>
+							<td><p:outputLabel value="Dias Úteis (Previsto)" /></td>							
+						</tr>
+						<tr>
+							<td>
+							<p:calendar id="planInicio" pattern="dd/MM/yyyy" value="#{cadasroPortariaBean.auditoria.planInicioPrev}" locale="pt_BR" readonly="true" disabled="true" showOn="false"/>  							
+							</td>
+							<td>
+							<p:calendar id="planFim" pattern="dd/MM/yyyy" value="#{cadasroPortariaBean.auditoria.planFimPrev}" locale="pt_BR" readonly="true" disabled="true" showOn="false"/>
+							</td>
+							<td>
+							<h:outputText id="planDiasUteis"  value="#{cadasroPortariaBean.auditoria.planDiasUteisPrev}"/>
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+				</fieldset>
+			</h:panelGroup>
+			<h:panelGroup id="display1">
+				<fieldset>
+					<legend>Dados da Portaria</legend>
+					<table width="50%" cellpadding="0" cellspacing="10" border="0">
+						<tr>
+							<td>Tipo de Fiscalização:</td>
+							<td><h:outputText id="tipofiscalizacao"
+									value="#{cadasroPortariaBean.auditoria.tipoFiscalizacao.nome}" />
+							</td>
+						</tr>
+						<tr>
+							<td>Jurisdicionado(s):</td>
+							<td><h:outputText id="jusisdicionado"
+									value="#{cadasroPortariaBean.auditoria.pegarSiglaDasUgsInteressadas}" />
+							</td>
+						</tr>
+						<tr>
+							<td>Objetivo:</td>
+							<td><p:inputText id="objetivo"
+									value="#{cadasroPortariaBean.portaria.objetivo}" size="80" />
+							</td>
+						</tr>
+						<tr>
+							<td>Deliberação:</td>
+							<td><p:inputText id="deliberacao"
+									value="#{cadasroPortariaBean.portaria.deliberacao}" size="80" /></td>
+						</tr>
+					</table>
+				</fieldset>
+			</h:panelGroup>
+			<h:panelGroup id="display2">
+				<fieldset>
+					<legend>Processo de Fiscalização</legend>
+					<table width="50%" cellpadding="0" cellspacing="10" border="0">
+						<tr>
+							<td>Número do Processo</td>
+							<td><p:inputText id="processoNumero"
+									value="#{cadasroPortariaBean.portaria.processoNumero}"
+									size="10" /></td>
+						</tr>
+						<tr>
+							<td>Ano do Processo</td>
+							<td><p:inputText id="processoAno"
+									value="#{cadasroPortariaBean.portaria.processoAno}" size="10" />
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</h:panelGroup>
+			<h:panelGroup id="display3">
+				<fieldset>
+					<legend>Dados da Emissão</legend>
+					<table width="50%" cellpadding="0" cellspacing="10" border="0">
+						<tr>
+							<td>Assinador por:</td>
+							<td><p:selectOneMenu id="idServidor"
+									value="#{cadasroPortariaBean.portaria.idServidor}"
+									converter="converterPadrao" filter="true">
+									<f:selectItem itemLabel="Assinado por......." itemValue="" />
+									<f:selectItems value="#{sistemaBean.servidorList}" var="varSV"
+										itemLabel="#{varSV.nome}" itemValue="#{varSV.id}" />
+								</p:selectOneMenu></td>
+						</tr>
+						<tr>
+							<td>No. DOE:</td>
+							<td><p:inputText id="doeNumero"
+									value="#{cadasroPortariaBean.portaria.numeroPublicaDoe}"
+									size="10" /></td>
+						</tr>
+						<tr>
+							<td>Data DOE:</td>
+							<td><p:calendar id="doeData"
+									value="#{cadasroPortariaBean.portaria.dataPublicaDoe}"
+									showOn="button" locale="pt_BR" pattern="dd/MM/yyyy" /></td>
+						</tr>
+					</table>
+				</fieldset>
+			</h:panelGroup>
+			<h:panelGroup id="display4">
+				<fieldset>
+					<legend>Dados da Revogação</legend>
+					<table width="50%" cellpadding="0" cellspacing="10" border="0">
+						<tr>
+							<td>No da Portaria</td>
+							<td><p:inputText id="numeroPortariaRevogada"
+									value="#{cadasroPortariaBean.portaria.numeroPortariaRevogada}" />
+							</td>
+						</tr>
+						<tr>
+							<td>Ano da Portaria</td>
+							<td><p:inputText id="anoPortariaRevogada"
+									value="#{cadasroPortariaBean.portaria.anoPortariaRevogada}" />
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</h:panelGroup>
+			<p:commandButton value="Salvar" update=":PortariaCreateForm	"
+				actionListener="#{equipeFiscalizacaoBean.salvar}"
+				icon="ui-icon-disk" />
+			<p:commandButton value="Cancelar"
+				action="#{auditoriaBean.abrirListaAuditoria}" icon="ui-icon-close"
+				immediate="true" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
