@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<ui:composition template="/template/template.xhtml">
+	<br />
+	<br />
+	<br />
+	<ui:define name="content">
+		<t:saveState value="#{auditoriaBean.items}"/>
+		<br />
+		<center>Lista de Auditorias</center>
+		<br />
+		<h:form id="form">
+			<p:dataTable id="listaAuditorias"
+				value="#{auditoriaBean.items}" var="s"
+				emptyMessage="Nenhuma Auditoria Enqontrada" rows="100"
+				paginator="true" paginatorPosition="bottom"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				currentPageReportTemplate="({currentPage} de {totalPages})">
+
+				<p:column headerText="Código" width="10%">
+					<h:outputText style="font-weight: bold"
+						value="#{s.idauditoria}" />
+				</p:column>
+
+				<p:column headerText="Objetivo" width="30%">
+					<h:outputText style="font-weight: bold" value="#{s.objetivo}" />
+				</p:column>
+				<p:column headerText="Fase Planejamento" colspan="2" width="10%">
+				    Início:
+					<h:outputText style="font-weight: bold" value="#{s.planInicioPrev}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Fim:
+					<h:outputText style="font-weight: bold" value="#{s.planFimReal}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					
+				</p:column>
+				<p:column headerText="Fase Execução" colspan="2" width="10%">
+				    Início:
+					<h:outputText style="font-weight: bold" value="#{s.execInicioPrev}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Fim:
+					<h:outputText style="font-weight: bold" value="#{s.execFimPrev}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					
+				</p:column>
+				<p:column headerText="Fase Relatório" colspan="2" width="10%">
+				    Início:
+					<h:outputText style="font-weight: bold" value="#{s.relaInicioPrev}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Fim:
+					<h:outputText style="font-weight: bold" value="#{s.relaFimPrev}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>					
+				</p:column>
+				<p:column headerText="Opções" width="5%">
+				  <p:commandButton icon="ui-icon-pencil" action="#{auditoriaBean.prepareEdit(s)}" label="Editar Auditoria"></p:commandButton>
+				  <p:commandButton icon="ui-icon-person" action="#{cadasroPortariaBean.preprarCadastroPortaria(s)}" label="Criar Portaria"></p:commandButton>			
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
