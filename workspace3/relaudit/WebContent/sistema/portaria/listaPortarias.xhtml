@@ -76,7 +76,7 @@
 					<h:outputText style="font-weight: bold" value="#{s.relaDiasUteis}" />					
 				</p:column>	
 				<p:column headerText="Opções" width="5%">
-				  <p:commandButton icon="ui-icon-pencil" action="#{cadasroPortariaBean.viewPortaria(s)}" title="Editar" escape="true"/>	
+				  <p:commandButton icon="ui-icon-pencil" action="#{cadasroPortariaBean.prepararEditPortaria(s)}" title="Editar" escape="true"/>	
 				  <p:commandButton icon="ui-icon-document-b" action="#{cadasroPortariaBean.abrirPdf}" title="Pdf"/>		
 				</p:column>
 		</p:dataTable>		
