@@ -3,6 +3,8 @@
 	<persistence-unit name="relaudit" transaction-type="JTA">
 			<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 	<jta-data-source>dssispgraudi</jta-data-source>
+	<class>br.leg.tcerr.difip.relaudit.entity.Grupo</class>
+	<class>br.leg.tcerr.difip.relaudit.entity.Servidor</class>
 		<properties>
 			<property name="eclipselink.logging.level.sql" value="FINE"/>
 			<property name="eclipselink.logging.parameters" value="true"/>

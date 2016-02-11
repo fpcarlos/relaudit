@@ -1,8 +1,6 @@
 package br.leg.tcerr.difip.relaudit.entity;
 
 import java.io.Serializable;
-
-import javax.enterprise.context.Dependent;
 import javax.persistence.*;
 import java.util.List;
 
@@ -11,7 +9,6 @@ import java.util.List;
  * The persistent class for the servidor database table.
  * 
  */
-@Dependent
 @Entity
 @Table(name="servidor", schema="scsisaudit")
 @NamedQuery(name="Servidor.findAll", query="SELECT s FROM Servidor s")
@@ -19,8 +16,7 @@ public class Servidor implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer id;
 
 	@Column(name="auditor_fiscal")
@@ -30,9 +26,11 @@ public class Servidor implements Serializable {
 
 	private String formacao;
 
-	private String login;
-
 	private String nome;
+
+	private String senha;
+	
+	private String login;
 
 	@Column(name="servidor_administrador")
 	private String servidorAdministrador;
@@ -48,8 +46,10 @@ public class Servidor implements Serializable {
 
 	private String sexo;
 
-	//bi-directional many-to-one association to EquipeFiscalizacao
-	//@OneToMany(mappedBy="servidor")
+	//bi-directional many-to-one association to Grupo
+	@OneToMany(mappedBy="servidor")
+	private List<Grupo> grupos;
+
 	@Transient
 	private List<EquipeFiscalizacao> equipeFiscalizacaos;
 
@@ -58,6 +58,7 @@ public class Servidor implements Serializable {
 	@Transient
 	private List<Portaria> portarias;
 
+	
 	public Servidor() {
 	}
 
@@ -93,20 +94,20 @@ public class Servidor implements Serializable {
 		this.formacao = formacao;
 	}
 
-	public String getLogin() {
-		return this.login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
 	public String getNome() {
 		return this.nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getSenha() {
+		return this.senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	public String getServidorAdministrador() {
@@ -147,6 +148,28 @@ public class Servidor implements Serializable {
 
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
+	}
+
+	public List<Grupo> getGrupos() {
+		return this.grupos;
+	}
+
+	public void setGrupos(List<Grupo> grupos) {
+		this.grupos = grupos;
+	}
+
+	public Grupo addGrupo(Grupo grupo) {
+		getGrupos().add(grupo);
+		grupo.setServidor(this);
+
+		return grupo;
+	}
+
+	public Grupo removeGrupo(Grupo grupo) {
+		getGrupos().remove(grupo);
+		grupo.setServidor(null);
+
+		return grupo;
 	}
 
 	public List<EquipeFiscalizacao> getEquipeFiscalizacaos() {
@@ -193,5 +216,14 @@ public class Servidor implements Serializable {
 		return portaria;
 	}
 */
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	
 }
