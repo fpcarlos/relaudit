@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<f:view locale="pt_BR">
+	<h:head>
+		<title><ui:insert name="title">#{msg['titulo-sistema']}</ui:insert></title>
+		<h:outputStylesheet name="estilo.css" library="css" />
+		<!-- 		<h:outputScript name="scripts.js" library="js" /> -->
+		<h:outputScript name="calendar_ptbr.js" library="js" />
+		<script type="text/javascript" src="/sisaudit/ckeditor/ckeditor.js"></script>
+        <script type="text/javascript" src="/sisaudit/ckeditor/adapters/jquery.js"></script>
+        <script type="text/javascript" src="/sisaudit/ckeditor/ckfinder/ckfinder.js"></script>        
+
+
+	</h:head>
+	<h:body>
+
+
+		<p:dialog modal="true" widgetVar="statusDialog"
+			header="Por favor aguarde" draggable="false" closable="false"
+			resizable="false">
+			<p:graphicImage value="/resources/images/barracarregando.gif" />
+		</p:dialog>
+
+
+
+		<div align="center">
+			<h:form id="formtop">
+				<table width="100%" border="0" cellspacing="0">
+					<tr>
+						<td align="left" width="30"><h:graphicImage name="logorr.jpg"
+								library="images" height="40" width="30" /></td>
+						<td align="left" valign="middle">&nbsp;&nbsp;<h:outputText
+								value="#{msg['nome-sistema']}" styleClass="titulo-produto" /></td>
+						<td width="20%">
+						<h:outputText value="Usuário: " />
+						<h:outputText value="#{usuarioBean.mostraUser}" /> 						
+						<h:outputText value="#{usuarioBean.usuarioSelected.nome}"  />
+						<!-- <h:outputText value="#{usuarioBean.logon}" /> --> <br /></td>
+						<td align="right"></td>
+					</tr>
+				</table>
+			</h:form>
+		</div>
+		<div align="center">
+			<ui:include src="/template/formMenu.xhtml" />
+		</div>
+		<br />
+		<br />
+		<div style="height: 200px">
+			<ui:insert name="content">Content</ui:insert>
+		</div>
+
+	</h:body>
+</f:view>
+</html>
+

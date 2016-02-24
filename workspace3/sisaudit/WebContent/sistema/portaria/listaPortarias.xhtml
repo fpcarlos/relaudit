@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<h:outputStylesheet name="css/jsfcrud.css" />
+</h:head>
+<ui:composition template="/template/template.xhtml">
+	<ui:define name="content">
+	<h:panelGroup id="display" layout="block" style="overflow-y:scroll">
+		<h:form id="listaPortariasForm">
+		<p:panelGrid id="display">
+			<p:commandButton value="Nova Portaria"  action="#{cadasroPortariaBean.prepararNovaPortaria}"/>
+		</p:panelGrid>
+				
+		<p:panelGrid id="display2">
+		<p:dataTable id="listaPortarias"
+						value="#{cadasroPortariaBean.portariaList}" var="s"
+						emptyMessage="Nenhuma Portaria Enqontrada" rows="20"
+						paginator="true" paginatorPosition="bottom"
+						paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="({currentPage} de {totalPages})"
+						sortBy="#{s.numeroPortaria}"
+						>
+				<p:column headerText="Auditoria" width="5%">
+					<h:outputText style="font-weight: bold" value="#{s.idAuditoria}" />
+				</p:column>
+				<p:column headerText="No Portaria" width="5%">
+					<h:outputText style="font-weight: bold"
+						value="#{s.numeroPortaria}"/>
+				</p:column>
+				<p:column headerText="Ano" width="5%">
+					<h:outputText style="font-weight: bold"
+						value="#{s.anoPortaria}" />
+				</p:column>
+				<p:column headerText="Sigla Jurisdicionado" width="20%">
+					<h:outputText style="font-weight: bold" value="#{s.listaSiglaUnidadeGestoraDaPortaria}"  />
+				</p:column>
+								
+				<p:column headerText="Objetivo" width="50%">
+					<h:outputText style="font-weight: bold" value="#{s.objetivo}" />
+				</p:column>
+				<!-- 
+				<p:column headerText="Fase Planejamento" colspan="2" width="10%">
+				    Início:
+					<h:outputText style="font-weight: bold" value="#{s.planInicio}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Fim:
+					<h:outputText style="font-weight: bold" value="#{s.planFim}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>					
+					<br></br>
+					Dias úteis:
+					<h:outputText style="font-weight: bold" value="#{s.planDiasUteis}" />
+				</p:column>
+				<p:column headerText="Fase Execução" colspan="2" width="10%">
+				    Início:
+					<h:outputText style="font-weight: bold" value="#{s.execInicio}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Fim:
+					<h:outputText style="font-weight: bold" value="#{s.execFim}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Dias úteis:
+					<h:outputText style="font-weight: bold" value="#{s.execDiasUteis}" />										
+				</p:column>			
+				<p:column headerText="Fase Relatório" colspan="2" width="10%">
+				    Início:
+					<h:outputText style="font-weight: bold" value="#{s.relaInicio}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>
+					<br></br>
+					Fim:
+					<h:outputText style="font-weight: bold" value="#{s.relaFim}" >
+                       <f:convertDateTime pattern="dd/MM/YYYY" />
+					</h:outputText>					
+					<br></br>
+					Dias úteis:
+					<h:outputText style="font-weight: bold" value="#{s.relaDiasUteis}" />					
+				</p:column>	
+				 -->
+				<p:column headerText="Opções" width="20%">
+				  <p:commandButton icon="ui-icon-pencil" action="#{portariaWizardBean.editarWizardPortaria(s)}" title="Editar" escape="true"/>	
+				  <p:commandButton icon="ui-icon-document-b" action="#{cadasroPortariaBean.abrirPdf}" title="Pdf"/>		
+				</p:column>
+		</p:dataTable>		
+		</p:panelGrid>				
+		</h:form>
+		</h:panelGroup>
+	</ui:define>
+</ui:composition>
+</html>

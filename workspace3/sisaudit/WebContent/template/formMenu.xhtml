@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:form id="formmenu">
+		<p:menubar style="width: 100%">
+			<p:menuitem value="Home" url="/" icon="ui-icon-home"
+				style="padding-right: 4px" />
+			<p:submenu label="Auditoria" icon="ui-icon-document">
+				<p:menuitem value="Listagem de Auditorias"  action="#{auditoriaBean.abrirListaAuditoria}"/>
+				<p:menuitem value="Cadastrar Auditoria"  action="#{auditoriaBean.abrirCadastroAuditoria}"/>
+			</p:submenu>	
+			<p:submenu label="Portaria" icon="ui-icon-bookmark">
+				<p:menuitem value="Listagem de Portarias"  action="#{cadasroPortariaBean.abrirListaPortaria}"/>
+				<p:menuitem value="Cad Portaria"  action="#{cadasroPortariaBean.prepararNovaPortaria()}"/>
+				</p:submenu>
+		    <p:menuitem value="Planejamento" 
+				ajax="false" icon="ui-icon-bookmark" style="padding-right: 4px" />
+			<p:menuitem value="Execução" 
+				ajax="false" icon="ui-icon-bookmark" style="padding-right: 4px" />
+			<p:menuitem value="Relatório" 
+				ajax="false" icon="ui-icon-bookmark" style="padding-right: 4px" />
+					
+			<p:submenu label="Sub-Cadastros" icon="ui-icon-disk">
+				<p:menuitem value="Critérios de Seleção" ajax="false" url="#" />
+				<p:menuitem value="Origem das Auditorias" ajax="false" url="#" />
+				<p:menuitem value="Tipo de Fiscalização" ajax="false" url="#" />
+				<p:menuitem value="Unidades Fiscalizadoras" ajax="false" url="#" />
+			</p:submenu>
+			<p:menuitem value="Sair" action="#{usuarioBean.logout}"
+				ajax="false" icon="ui-icon-bookmark" style="padding-right: 4px" />
+		</p:menubar>
+	</h:form>
+</ui:composition>
