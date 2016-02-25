@@ -68,6 +68,11 @@ public class Poder implements Serializable {
 		this.descricao = descricao;
 	}
 
+	@Override
+	public String toString() {
+		return "Poder [id=" + id + "]";
+	}
+
 
 	
 

@@ -32,7 +32,8 @@ public class ConverterAutoCompletUG implements Converter {
             	Integer aux=Integer.parseInt(value); 
             	
             	//return service.getUnidadeGestoraList().get(Integer.parseInt(value));
-            	return sistemaBean.selecionarUnidadeGestora(Integer.parseInt(value));
+            	return service.selecionarUnidadeGestora(aux);
+            	//return sistemaBean.selecionarUnidadeGestora(Integer.parseInt(value));
             } catch(NumberFormatException e) {
                 throw new ConverterException(new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid theme."));
             }

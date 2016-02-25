@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import br.leg.rr.tce.cgesi.sisaudit.comum.entity.UnidadeGestora;
+import br.leg.rr.tce.cgesi.sisaudit.entity.UnidadeGestoraPortaria;
 
 @Stateless
 public class UnidadeGestoraEjb extends AbstractEjb implements Serializable {
@@ -41,7 +42,20 @@ public class UnidadeGestoraEjb extends AbstractEjb implements Serializable {
 		}
 	}
     
-	
+    public List<UnidadeGestora> findIdUnidadeGestora(Integer idP) throws Exception {
+		try {
+			String sql = "select * from comum.v_unidade_gestora where cod_ug=" + idP + "";
+			List<UnidadeGestora> listaUGP =  executaSqlNativo(sql, UnidadeGestora.class, entityManager);
+			return listaUGP;
+
+		} catch (RuntimeException re) {
+			re.printStackTrace();
+			throw new Exception(" Erro" + re.getMessage());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception(" Erro" + e.getMessage());
+		}
+	}
 
     
     

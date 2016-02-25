@@ -88,5 +88,10 @@ public class TipoUg implements Serializable {
 		this.poder = poder;
 	}
 
+	@Override
+	public String toString() {
+		return "TipoUg [id=" + id + "]";
+	}
+
 
 }

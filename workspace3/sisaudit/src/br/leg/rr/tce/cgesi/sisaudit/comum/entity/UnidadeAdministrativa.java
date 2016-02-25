@@ -130,6 +130,11 @@ public class UnidadeAdministrativa  implements Serializable {
 		this.id_municipio_sagf = id_municipio_sagf;
 	}
 
+	@Override
+	public String toString() {
+		return "UnidadeAdministrativa [id=" + id + "]";
+	}
+
 	
 	
 	

@@ -136,7 +136,8 @@ public class PortariaWizardBean extends AbstractBean implements Serializable {
 				for (UnidadeGestoraPortaria x : unidadeGestoraPortariaEjb.findIdPortaria(portaria.getId())) {
 					UnidadeGestora unG = new UnidadeGestora();
 					// unG=sistemaBean.getUnidadeGestoraList().get(x.getIdUnidadeGestora());
-					unG = x.getUnidadeGestora();
+					//unG = unidadeGestoraEjb.findIdUnidadeGestora(x.getId_unidade_gestora()).get(0);
+					unG = sistemaBean.selecionarUnidadeGestora(x.getId_unidade_gestora());
 					unidadeGestoraSelecionadas.add(unG);
 					// unGP.setIdUnidadeGestora(x.getId());
 					// unGP.setPortaria(portaria);
@@ -144,7 +145,6 @@ public class PortariaWizardBean extends AbstractBean implements Serializable {
 				}				
 				
 			}
-
 
 			equipeFiscalizacaoList = new ArrayList<EquipeFiscalizacao>();
 			equipeFiscalizacaoList = equipeFiscalizacaoEjb.findIdPortaria(aux.getId());

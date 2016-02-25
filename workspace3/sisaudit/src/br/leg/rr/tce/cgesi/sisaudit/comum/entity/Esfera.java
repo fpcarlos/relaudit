@@ -64,5 +64,11 @@ public class Esfera implements Serializable {
 		this.tipo = tipo;
 	}
 
+	@Override
+	public String toString() {
+		return "Esfera [id=" + id + "]";
+	}
+
+	
 
 }
